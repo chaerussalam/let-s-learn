@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Theory Page</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+  :root {
+    --primary-color: #4b6cb7;
+    --secondary-color: #182848;
+    --accent-color: #f5a623;
+    --background-color: #f0f4f8;
+    --text-color: #333;
+    --shadow-color: rgba(0,0,0,0.1);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+
+  header {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    padding: 2rem 1rem;
+    color: white;
+    text-align: center;
+    box-shadow: 0 3px 10px var(--shadow-color);
+  }
+
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+  }
+
+  main {
+    max-width: 900px;
+    margin: 2.5rem auto;
+    background: white;
+    padding: 2rem 3rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+  }
+
+  h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 2rem;
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 0.3rem;
+  }
+
+  section {
+    margin-bottom: 2.5rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #444;
+  }
+
+  /* Interactive Quiz Section */
+  .quiz {
+    background: #f9fafb;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 1rem 1.5rem;
+  }
+
+  .quiz h3 {
+    margin-top: 0;
+    color: var(--secondary-color);
+  }
+
+  .quiz-question {
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+
+  .options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .options li {
+    margin-bottom: 0.7rem;
+  }
+
+  .options li label {
+    cursor: pointer;
+    user-select: none;
+    font-size: 1rem;
+  }
+
+  button.check-btn {
+    margin-top: 1rem;
+    background: var(--accent-color);
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  button.check-btn:hover {
+    background: #d18f20;
+  }
+
+  .result {
+    margin-top: 1rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background: #182848;
+    color: white;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    main {
+      padding: 1.5rem 1.5rem;
+      margin: 1.5rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Theory of Modern Web Development</h1>
+</header>
+<main>
+  <section>
+    <h2>Introduction</h2>
+    <p>
+      Modern web development is an exciting field that combines creativity and technical skills. Understanding the underlying theories behind technologies and design principles helps create better user experiences.
+    </p>
+  </section>
+  <section>
+    <h2>Core Concepts</h2>
+    <p>
+      The core concepts include HTML, CSS, and JavaScript. HTML structures the content, CSS styles the presentation, and JavaScript adds interactivity. Together, they allow developers to build dynamic and responsive websites.
+    </p>
+    <p>
+      Beyond these basics, frameworks and libraries such as React, Angular, and Vue are built on top of JavaScript to simplify complex UI development.
+    </p>
+  </section>
+  <section class="quiz">
+    <h3>Quick Quiz</h3>
+    <div class="quiz-question" id="question">What language is primarily used to style web pages?</div>
+    <ul class="options">
+      <li><label><input type="radio" name="choice" value="1" /> Python</label></li>
+      <li><label><input type="radio" name="choice" value="2" /> HTML</label></li>
+      <li><label><input type="radio" name="choice" value="3" /> CSS</label></li>
+      <li><label><input type="radio" name="choice" value="4" /> JavaScript</label></li>
+    </ul>
+    <button class="check-btn" onclick="checkAnswer()">Check Answer</button>
+    <div class="result" id="result"></div>
+  </section>
+</main>
+<footer>
+  &copy; 2024 Web Theory Hub. All rights reserved.
+</footer>
+<script>
+  const correctAnswer = "3";
+  function checkAnswer() {
+    const choices = document.getElementsByName('choice');
+    let selectedValue = null;
+    for(let choice of choices){
+      if(choice.checked){
+        selectedValue = choice.value;
+        break;
+      }
+    }
+    const resultEl = document.getElementById('result');
+    if(selectedValue === null) {
+      resultEl.textContent = "Please select an answer.";
+      resultEl.style.color = "crimson";
+      return;
+    }
+    if(selectedValue === correctAnswer) {
+      resultEl.textContent = "Correct! CSS is used to style web pages.";
+      resultEl.style.color = "green";
+    } else {
+      resultEl.textContent = "Oops! That's not right. Try again.";
+      resultEl.style.color = "crimson";
+    }
+  }
+</script>
+</body>
+</html>
+
